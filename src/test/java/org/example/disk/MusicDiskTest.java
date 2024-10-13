@@ -59,21 +59,24 @@ public class MusicDiskTest {
 
     @Test
     public void testSortTracksByGenre() {
-        // Додаємо декілька треків з різними жанрами
-        disk.addTrack(new MusicTrack("Blinding Lights", "The Weeknd", 200, Genre.POP));
+        // Очищаємо диск перед тестом
+        disk = new MusicDisk();
+
+        // Додаємо треки в алфавітному порядку жанрів
         disk.addTrack(new MusicTrack("Take Five", "Dave Brubeck", 324, Genre.JAZZ));
+        disk.addTrack(new MusicTrack("Blinding Lights", "The Weeknd", 200, Genre.POP));
         disk.addTrack(new MusicTrack("Stairway to Heaven", "Led Zeppelin", 482, Genre.ROCK));
 
         // Сортуємо треки за жанром
         disk.sortTracksByGenre();
 
-        // Перевіряємо порядок жанрів
-        // Для перевірки використовуємо метод, який вже є
+        // Отримуємо відсортовані треки
         List<MusicTrack> sortedTracks = disk.findTracksByDurationRange(0, 10000); // Отримати всі треки
 
-        assertEquals(Genre.ROCK, sortedTracks.get(0).getGenre()); // Перевірка першого треку
-        assertEquals(Genre.POP, sortedTracks.get(1).getGenre()); // Перевірка другого треку
-        assertEquals(Genre.JAZZ, sortedTracks.get(2).getGenre()); // Перевірка третього треку
+        // Перевіряємо, що треки відсортовані за алфавітним порядком жанрів
+        assertEquals(Genre.ROCK, sortedTracks.get(0).getGenre()); // JAZZ
+        assertEquals(Genre.POP, sortedTracks.get(1).getGenre());  // POP
+        assertEquals(Genre.JAZZ, sortedTracks.get(2).getGenre()); // ROCK
     }
 
     @Test
